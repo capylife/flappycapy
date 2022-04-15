@@ -31,6 +31,7 @@ twitter = tweepy.API(auth)
 
 def main():
     while True:
+        logger.info(f"Waiting {CHECK_DELAY} seconds till next check.")
         time.sleep(CHECK_DELAY)
 
         with requests.get(CAPY_API_LINK) as resp:
