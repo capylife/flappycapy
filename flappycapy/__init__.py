@@ -69,17 +69,16 @@ def main():
                     logger.warn("Unable to guess mime type.")
                     continue
 
-                media = twitter.simple_upload(
-                    filename="capy" + file_ext, file=img_resp.content
-                )
-                twitter.update_status(
-                    (f"Meet {json['name']}!\n"
-                     f"Submit a Capybara at {CAPY_LIFE_LINK}"),
-                    media_ids=[media.media_id]
-                )
-
                 try:
-                    pass
+                    media = twitter.simple_upload(
+                        filename="capy" + file_ext,
+                        file=img_resp.content
+                    )
+                    twitter.update_status(
+                        (f"Meet {json['name']}!\n"
+                         f"Submit a Capybara at {CAPY_LIFE_LINK}"),
+                        media_ids=[media.media_id]
+                    )
                 except Exception as error:
                     logger.warn((
                         "Unable to tweet capybara due to follow error:\n" +
