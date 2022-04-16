@@ -58,7 +58,7 @@ def main():
                 if resp.status_code != 200:
                     logger.warn((
                         f"HTTP Request to \"{json['image']}\""
-                        f" gave status code {resp.status_code}"
+                        f" gave status code {img_resp.status_code}"
                     ))
                     continue
 
