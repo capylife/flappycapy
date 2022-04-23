@@ -17,7 +17,7 @@ services:
 
       MONGO_IP: "flappycapy_mongodb"
       MONGO_PORT: 27017
-      MONGO_DB: "capycord"
+      MONGO_DB: "flappycapy"
     depends_on:
       - mongodb
     networks:
