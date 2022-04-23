@@ -1,13 +1,11 @@
 version: '3'
 services:
-  starlette:
-    container_name: capy_backend
+  flappycapy:
+    container_name: flappycapy
     build:
       dockerfile: ./Dockerfile
       context: ./
     restart: unless-stopped
-    ports:
-      - "7777:80"
     environment:
       CONSUMER_KEY: ""
       CONSUMER_SECRET: ""
@@ -43,6 +41,4 @@ networks:
 
 volumes:
   mongodbdata:
-    driver: local
-  capycorddata:
     driver: local
