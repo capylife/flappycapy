@@ -5,7 +5,7 @@ import logging
 import mimetypes
 
 from sys import stdout
-from pymongo import MongoClient
+from pymongo import MongoClient  # type: ignore
 from json import JSONDecodeError
 
 from .env import (
