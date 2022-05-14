@@ -29,6 +29,11 @@ auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 twitter = tweepy.API(auth)
 
 
+CONTENT_TYPES = {
+    "image/webp": ".webp"
+}
+
+
 def main():
     while True:
         logger.info(f"Waiting {CHECK_DELAY} seconds till next check.")
@@ -62,12 +67,21 @@ def main():
                     ))
                     continue
 
-                file_ext = mimetypes.guess_extension(
-                    img_resp.headers["Content-Type"]
-                )
-                if file_ext is None:
-                    logger.warn("Unable to guess mime type.")
-                    continue
+                if img_resp.headers["Content-Type"] in CONTENT_TYPES:
+                    file_ext = CONTENT_TYPES[
+                        img_resp.headers["Content-Type"]
+                    ]
+                else:
+                    file_ext = mimetypes.guess_extension(
+                        img_resp.headers["Content-Type"]
+                    )
+                    if not file_ext:
+                        logger.warn((
+                            "Unable to determine file ext from "
+                            "Content type "
+                            f"'{img_resp.headers['Content-Type']}'"
+                        ))
+                        continue
 
                 try:
                     media = twitter.simple_upload(
